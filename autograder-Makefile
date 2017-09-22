@@ -1,0 +1,9 @@
+all: grade
+
+grade: untar
+	@ ./autograding.rb
+
+.PHONY: untar
+untar: handin.tar.gz autograde.tar
+	@ tar -xzf handin.tar.gz --strip 1
+	@ tar -xf  autograde.tar
