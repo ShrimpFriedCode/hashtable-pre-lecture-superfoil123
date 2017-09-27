@@ -38,9 +38,12 @@ public class HashTable<K,V> implements Map<K,V> {
         Entry find = findEntry(key);
         System.out.println("Attempting to put key : " + key + " value :" + value);
         if(find == null){
+            System.out.println("not in tree");
             for(int i = 0; i < table.size(); i++){
                 LinkedList first = table.get(i);
+                System.out.println("At " + i);
                 if(first.peekFirst() == null){
+                    System.out.println("Found empty at " + i);
                     System.out.println("putting : " + key + " val: " + value);
                     first.addFirst(new Entry<>(key, value));
                     break;
