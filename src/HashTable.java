@@ -37,30 +37,31 @@ public class HashTable<K,V> implements Map<K,V> {
     public void put(K key, V value) {
         Entry find = findEntry(key);
         System.out.println("Attempting to put key : " + key + " value :" + value);
-        if(find == null){
-            System.out.println("not in tree");
-            int i = 0;
-            while(true){
-                LinkedList first = table.get(i);
-                System.out.println("At " + i);
-                if(first.peekFirst() == null){
-                    System.out.println("Found empty at " + i);
-                    System.out.println("putting : " + key + " val: " + value);
-                    first.addFirst(new Entry<>(key, value));
-                    break;
+        boolean space = true;
+
+        if(find == null){//if key DNE
+            for(int i = 0; i < table.size(); i++){
+                if(table.get(i).peekFirst() == null){//if empty node found
+                    table.get(i).addFirst(new Entry<>(key, value));//populate
+                    space = false;
+                    break; //end iteration
                 }
-                else if(i >= table.size()){//size capacity reached, make new
-                    table.add(new LinkedList<>());
-                    table.get(i).addFirst(new Entry<>(key, value));
-                    break;
-                }
-                i++;
             }
+
+            if(space){//if iterated through whole set, addition to set
+                LinkedList toadd = new LinkedList<>();
+                toadd.addFirst(new Entry<>(key, value));
+                table.add(toadd);
+            }
+
         }
-        else{
-            System.out.println("existing, Setting key " + key + " values: " + value);
+        else{//else val must be in tree
+            System.out.println("ex");
             find.value = value;
         }
+
+
+
     }
 
     /*
