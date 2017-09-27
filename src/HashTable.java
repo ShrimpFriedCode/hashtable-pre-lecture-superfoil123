@@ -39,10 +39,10 @@ public class HashTable<K,V> implements Map<K,V> {
         System.out.println("Attempting to put key : " + key + " value :" + value);
         if(find == null){
             for(int i = 0; i < table.size(); i++){
-                if(table.get(i).peekFirst() == null){
+                LinkedList first = table.get(i);
+                if(first.peekFirst() == null){
                     System.out.println("putting : " + key + " val: " + value);
-                    Entry<K,V> ent = new Entry<>(key, value);
-                    table.get(i).addFirst(ent);
+                    first.addFirst(new Entry<>(key, value));
                     break;
                 }
             }
@@ -77,9 +77,11 @@ public class HashTable<K,V> implements Map<K,V> {
      */
 
     protected Entry<K,V> findEntry(K key) {
+        Entry first;
         for(int i = 0; i < table.size(); i++){
-            if(table.get(i).peekFirst() != null && key == table.get(i).peekFirst().key){
-                return table.get(i).peekFirst();
+            first = table.get(i).peekFirst();
+            if(first != null && key == first.key){
+                return first;
             }
         }
         return null;
