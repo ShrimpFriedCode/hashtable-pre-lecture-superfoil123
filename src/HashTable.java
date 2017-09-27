@@ -1,4 +1,4 @@
-
+//Ethan Anderson
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -35,7 +35,21 @@ public class HashTable<K,V> implements Map<K,V> {
      * subsequent invocations of get() on the same key should return the value.
      */
     public void put(K key, V value) {
-        throw new UnsupportedOperationException();
+
+        Entry find = findEntry(key);
+
+        if(find == null){
+            for(int i = 0; i < 20; i++){
+                if(table.get(i).peekFirst() == null){
+                    Entry<K,V> ent = new Entry<>(key, value);
+                    table.get(i).addFirst(ent);
+                    break;
+                }
+            }
+        }
+        else{
+            find.value = value;
+        }
     }
 
     /*
@@ -45,18 +59,29 @@ public class HashTable<K,V> implements Map<K,V> {
      * from the hashtable, if such an entry exists.
      */
     public void remove(K key) {
-        throw new UnsupportedOperationException();
+        if(findEntry(key) != null){
+            for(int i = 0; i < 20; i++){
+                if(table.get(i).peekFirst() != null && key == table.get(i).peekFirst().key){
+                    table.get(i).remove();
+                }
+            }
+        }
     }
 
     /**********************
-     * TODO
+     *
      *
      * The findEntry() helper function returns an entry whose key matches the key parameter,
      * or else returns null if there is not such an entry in the table.
      */
 
     protected Entry<K,V> findEntry(K key) {
-        throw new UnsupportedOperationException();
+        for(int i = 0; i < 20; i++){
+            if(table.get(i).peekFirst() != null && key == table.get(i).peekFirst().key){
+                return table.get(i).peekFirst();
+            }
+        }
+        return null;
     }
 
 }
