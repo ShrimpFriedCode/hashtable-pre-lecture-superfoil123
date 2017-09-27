@@ -29,7 +29,6 @@ public class HashTable<K,V> implements Map<K,V> {
     }
 
     /*
-     * TODO
      *
      * The put() method should associate the value with the key, so that
      * subsequent invocations of get() on the same key should return the value.
@@ -63,7 +62,6 @@ public class HashTable<K,V> implements Map<K,V> {
     }
 
     /*
-     * TODO
      *
      * The remove() method removes the entry whose key matches the key parameter
      * from the hashtable, if such an entry exists.
