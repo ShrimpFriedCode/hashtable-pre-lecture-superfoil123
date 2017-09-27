@@ -93,9 +93,12 @@ public class HashTable<K,V> implements Map<K,V> {
 
     protected Entry<K,V> findEntry(K key) {
         Entry first;
+        System.out.println("Total zise "  + (table.size() -1));
         for(int i = 0; i < table.size(); i++){
+            System.out.println("looking in " + i + " for " + key);
             first = table.get(i).peekFirst();
             if(first != null && key == first.key){
+                System.out.println("found");
                 return first;
             }
         }
