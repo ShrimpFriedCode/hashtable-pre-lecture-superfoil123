@@ -40,18 +40,21 @@ public class HashTable<K,V> implements Map<K,V> {
         boolean space = true;
 
         if(find == null){//if key DNE
+            System.out.println("DNE");
             for(int i = 0; i < table.size(); i++){
                 if(table.get(i).peekFirst() == null){//if empty node found
+                    System.out.println("Found empty at " + i);
                     table.get(i).addFirst(new Entry<>(key, value));//populate
                     space = false;
                     break; //end iteration
                 }
             }
-            System.out.println(table.size());
             if(space){//if iterated through whole set, addition to set
+                System.out.println("Space needed");
                 LinkedList toadd = new LinkedList<>();
                 toadd.addFirst(new Entry<>(key, value));
                 table.add(toadd);
+                System.out.println("increased to" + table.size());
             }
 
         }
