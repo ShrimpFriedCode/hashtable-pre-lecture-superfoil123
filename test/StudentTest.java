@@ -58,4 +58,29 @@ public class StudentTest {
         assertTrue(T.contains("bar"));
     }
 
+    @Test
+    public void big() throws Exception{
+        HashTable<String,Integer> T = new HashTable<>();
+        int[] ar2 = new int[100];
+        int[] ar1 = new int[100];
+        for(int i = 0; i < ar1.length; i++) {
+            ar1[i] = (int)(Math.random() * 1000);
+        }
+
+        for(int i = 0; i < ar2.length; i++) {
+            ar2[i] = (int)(Math.random() * 1000);
+        }
+
+        for(int i = 0; i < ar2.length; i++){
+            T.put(Integer.toString(ar1[i]), ar2[i]);
+            //System.out.println(T.table.get(i).peekFirst().key);
+        }
+
+        for(int i = 0; i < ar1.length; i++){
+            System.out.println(Integer.toString(ar1[i]));
+            System.out.println(T.contains(Integer.toString(ar1[i])));
+        }
+
+    }
+
 }

@@ -36,26 +36,26 @@ public class HashTable<K,V> implements Map<K,V> {
      */
     public void put(K key, V value) {
         Entry find = findEntry(key);
-        System.out.println("Attempting to put key : " + key + " value :" + value);
+        //System.out.println("Attempting to put key : " + key + " value :" + value);
         boolean space = true;
 
         if(find == null){//if key DNE
-            System.out.println("DNE");
+          //  System.out.println("DNE");
             for(int i = 0; i < table.size(); i++){
                 if(table.get(i).peekFirst() == null){//if empty node found
-                    System.out.println("Found empty at " + i);
+                    //System.out.println("Found empty at " + i);
                     table.get(i).addFirst(new Entry<>(key, value));//populate
                     space = false;
                     break; //end iteration
                 }
             }
             if(space){//if iterated through whole set, addition to set
-                System.out.println("Space needed");
+                //System.out.println("Space needed");
                 LinkedList toadd = new LinkedList<>();
                 toadd.addFirst(new Entry<>(key, value));
                 table.add(toadd);
-                System.out.println(table.get(table.size() - 1).peekFirst().value);
-                System.out.println("increased to" + (table.size() - 1));
+               // System.out.println(table.get(table.size() - 1).peekFirst().value);
+                //System.out.println("increased to" + (table.size() - 1));
             }
 
         }
@@ -93,12 +93,12 @@ public class HashTable<K,V> implements Map<K,V> {
 
     protected Entry<K,V> findEntry(K key) {
         Entry first;
-        System.out.println("Total zise "  + (table.size() -1));
+        //System.out.println("Total zise "  + (table.size() -1));
         for(int i = 0; i < table.size(); i++){
             System.out.println("looking in " + i + " for " + key);
             first = table.get(i).peekFirst();
-            if(first != null && key == first.key){
-                System.out.println("found");
+            if(first != null && key.equals(first.key)){
+                //System.out.println("found");
                 return first;
             }
         }
