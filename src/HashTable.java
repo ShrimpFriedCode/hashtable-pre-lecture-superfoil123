@@ -38,7 +38,7 @@ public class HashTable<K,V> implements Map<K,V> {
         Entry find = findEntry(key);
         System.out.println("Attempting to put key : " + key + " value :" + value);
         if(find == null){
-            for(int i = 0; i < 20; i++){
+            for(int i = 0; i < table.size(); i++){
                 if(table.get(i).peekFirst() == null){
                     System.out.println("putting : " + key + " val: " + value);
                     Entry<K,V> ent = new Entry<>(key, value);
@@ -61,7 +61,7 @@ public class HashTable<K,V> implements Map<K,V> {
      */
     public void remove(K key) {
         if(findEntry(key) != null){
-            for(int i = 0; i < 20; i++){
+            for(int i = 0; i < table.size(); i++){
                 if(table.get(i).peekFirst() != null && key == table.get(i).peekFirst().key){
                     table.get(i).remove();
                 }
@@ -77,7 +77,7 @@ public class HashTable<K,V> implements Map<K,V> {
      */
 
     protected Entry<K,V> findEntry(K key) {
-        for(int i = 0; i < 20; i++){
+        for(int i = 0; i < table.size(); i++){
             if(table.get(i).peekFirst() != null && key == table.get(i).peekFirst().key){
                 return table.get(i).peekFirst();
             }
