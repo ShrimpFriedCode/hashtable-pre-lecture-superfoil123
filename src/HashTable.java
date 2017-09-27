@@ -35,12 +35,12 @@ public class HashTable<K,V> implements Map<K,V> {
      * subsequent invocations of get() on the same key should return the value.
      */
     public void put(K key, V value) {
-
         Entry find = findEntry(key);
-
+        System.out.println("Attempting to put key : " + key + " value :" + value);
         if(find == null){
             for(int i = 0; i < 20; i++){
                 if(table.get(i).peekFirst() == null){
+                    System.out.println("putting : " + key + " val: " + value);
                     Entry<K,V> ent = new Entry<>(key, value);
                     table.get(i).addFirst(ent);
                     break;
@@ -48,6 +48,7 @@ public class HashTable<K,V> implements Map<K,V> {
             }
         }
         else{
+            System.out.println("existing, Setting key " + key + " values: " + value);
             find.value = value;
         }
     }
