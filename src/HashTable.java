@@ -47,7 +47,7 @@ public class HashTable<K,V> implements Map<K,V> {
                     break; //end iteration
                 }
             }
-
+            System.out.println(table.size());
             if(space){//if iterated through whole set, addition to set
                 LinkedList toadd = new LinkedList<>();
                 toadd.addFirst(new Entry<>(key, value));
