@@ -54,6 +54,7 @@ public class HashTable<K,V> implements Map<K,V> {
                 LinkedList toadd = new LinkedList<>();
                 toadd.addFirst(new Entry<>(key, value));
                 table.add(toadd);
+                System.out.println(table.get(table.size() - 1).peekFirst().value);
                 System.out.println("increased to" + (table.size() - 1));
             }
 
